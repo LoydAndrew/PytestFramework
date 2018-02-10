@@ -1,2 +1,7 @@
 .idea/
 tests/home/.pytest_cache/
+pages/__pycache__/
+pages/home/__init__.py
+pages/home/__pycache__/
+tests/__pycache__/
+tests/home/__pycache__/
