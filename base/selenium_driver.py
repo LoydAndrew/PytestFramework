@@ -14,6 +14,10 @@ def print_red(prt):
     print("\033[91m{}\033[00m".format(prt))
 
 
+def print_yel(prt):
+    print("\033[33m{}\033[00m".format(prt))  # \033m[00m needed for not printing everything in yellow
+
+
 # noinspection PyMethodMayBeStatic,PyBroadException
 class SeleniumDriver:
     def __init__(self, driver):
@@ -58,7 +62,7 @@ class SeleniumDriver:
         try:
             element = self.driver.find_element(by_type, locator)
             if element is not None:
-                print("Element %s was found by %s " % (locator, by_type))
+                print_yel("Element %s was found by %s " % (locator, by_type))
         except:
             print_red("!!! Element %s was not found by %s !!!" % (locator, by_type))
         return element
@@ -69,10 +73,12 @@ class SeleniumDriver:
             element = self.get_element(locator, locator_type)
             element.click()
             print(
-                "Clicked on element with locator {0} and locator_type {0}".format(locator, locator_type))
+                "Clicked on element with locator '{0}' and locator_type '{1}'".format(
+                    locator,
+                    locator_type))
         except:
             print(
-                "Cannot click on the element with locator {0} and locator_type {0}".format(
+                "Couldn't click on the element with locator '{0}' and 'locator_type' {1}".format(
                     locator,
                     locator_type))
             print_stack()
@@ -82,10 +88,12 @@ class SeleniumDriver:
             element = self.get_element(locator, locator_type)
             element.send_keys(data)
             print(
-                "Sent data to the element with locator {0} and locator_type {0}".format(locator, locator_type))
+                "Sent data to the element with locator '{0}' and locator_type '{1}'".format(
+                    locator,
+                    locator_type))
         except:
             print(
-                "Cannot data to the element with locator {0} and locator_type {0}".format(
+                "Cannot sent data to the element with locator '{0}' and locator_type '{1}'".format(
                     locator,
                     locator_type))
             print_stack()
