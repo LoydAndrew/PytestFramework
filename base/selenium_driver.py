@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
+# from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import *
@@ -9,15 +9,18 @@ from traceback import print_stack
 import inspect
 import logging
 
-def printRed(prt):
+
+def print_red(prt):
     print("\033[91m{}\033[00m".format(prt))
 
 
+# noinspection PyMethodMayBeStatic,PyBroadException
 class SeleniumDriver:
     def __init__(self, driver):
         self.driver = driver
 
     # getting locators
+    # noinspection PyMethodMayBeStatic
     def get_by_type(self, locator_type):
         locator_type = locator_type.lower()
         if locator_type == "id":
@@ -45,7 +48,7 @@ class SeleniumDriver:
             return By.PARTIAL_LINK_TEXT
 
         else:
-            printRed("Locator type " + str(locator_type) + " is not supported")
+            print_red("Locator type " + str(locator_type) + " is not supported")
         return locator_type
 
     # getting elements using locators above
@@ -57,7 +60,7 @@ class SeleniumDriver:
             if element is not None:
                 print("Element %s was found by %s " % (locator, by_type))
         except:
-            printRed("!!! Element %s was not found by %s !!!" % (locator, by_type))
+            print_red("!!! Element %s was not found by %s !!!" % (locator, by_type))
         return element
 
     # clicking on the element
@@ -65,7 +68,7 @@ class SeleniumDriver:
         try:
             element = self.get_element(locator, locator_type)
             element.click()
-            print (
+            print(
                 "Clicked on element with locator {0} and locator_type {0}".format(locator, locator_type))
         except:
             print(
@@ -74,7 +77,7 @@ class SeleniumDriver:
                     locator_type))
             print_stack()
 
-    def send_info(self, data, locator, locator_type='id'):
+    def send_data(self, data, locator, locator_type='id'):
         try:
             element = self.get_element(locator, locator_type)
             element.send_keys(data)
@@ -82,7 +85,7 @@ class SeleniumDriver:
                 "Sent data to the element with locator {0} and locator_type {0}".format(locator, locator_type))
         except:
             print(
-                "Sent data to the element with locator {0} and locator_type {0}".format(
+                "Cannot data to the element with locator {0} and locator_type {0}".format(
                     locator,
                     locator_type))
             print_stack()
@@ -132,21 +135,21 @@ class SeleniumDriver:
             print("Directory error")
 
     # logging stuff
-    def custom_logger(self, logLevel):
+    def custom_logger(self, log_level):
         # getting the name of the method
-        loggerName = inspect.stack()[1][3]
-        logger = logging.getLogger(loggerName)
+        logger_name = inspect.stack()[1][3]
+        logger = logging.getLogger(logger_name)
 
         # all messages
 
         logger.setLevel(logging.DEBUG)
 
-        fileHandler = logging.FileHandler(filename="{0}.log".format(loggerName), mode='w')
-        fileHandler.setLevel(logLevel)
+        file_handler = logging.FileHandler(filename="{0}.log".format(logger_name), mode='w')
+        file_handler.setLevel(log_level)
 
         formatter = logging.Formatter(
             '%(asctime)s, %(name)s: %(levelname)s: %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S %p')
-        fileHandler.setFormatter(formatter)
-        logger.addHandler(fileHandler)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
         return logger

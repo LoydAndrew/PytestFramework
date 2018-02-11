@@ -2,10 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.home.login_page import LoginPage
 import pytest
-import unittest
+from unittest import TestCase
 
 
-class LoginTest(unittest.TestCase):
+class LoginTest(TestCase):
     @pytest.mark.run(order=1)
     def test_valid_login(self):
         driver = webdriver.Chrome()
