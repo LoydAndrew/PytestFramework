@@ -5,3 +5,6 @@ pages/home/__init__.py
 pages/home/__pycache__/
 tests/__pycache__/
 tests/home/__pycache__/
+.pytest_cache/v/cache/lastfailed
+base/__pycache__/__init__.cpython-35.pyc
+base/__pycache__/selenium_driver.cpython-35.pyc
