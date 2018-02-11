@@ -52,7 +52,7 @@ class SeleniumDriver:
             return By.PARTIAL_LINK_TEXT
 
         else:
-            print_red("Locator type " + str(locator_type) + " is not supported")
+            self.custom_logger(logging.info("Locator type " + str(locator_type) + " is not supported"))
         return locator_type
 
     # getting elements using locators above
@@ -62,9 +62,9 @@ class SeleniumDriver:
         try:
             element = self.driver.find_element(by_type, locator)
             if element is not None:
-                print_yel("Element %s was found by %s " % (locator, by_type))
+                self.custom_logger().info("Element %s was found by %s " % (locator, locator_type))
         except:
-            print_red("!!! Element %s was not found by %s !!!" % (locator, by_type))
+            self.custom_logger().info("!!! Element %s was not found by %s !!!" % (locator, by_type))
         return element
 
     # clicking on the element
@@ -72,12 +72,12 @@ class SeleniumDriver:
         try:
             element = self.get_element(locator, locator_type)
             element.click()
-            print(
+            self.custom_logger().info(
                 "Clicked on element with locator '{0}' and locator_type '{1}'".format(
                     locator,
                     locator_type))
         except:
-            print(
+            self.custom_logger().info(
                 "Couldn't click on the element with locator '{0}' and 'locator_type' {1}".format(
                     locator,
                     locator_type))
@@ -87,12 +87,12 @@ class SeleniumDriver:
         try:
             element = self.get_element(locator, locator_type)
             element.send_keys(data)
-            print(
+            self.custom_logger().info(
                 "Sent data to the element with locator '{0}' and locator_type '{1}'".format(
                     locator,
                     locator_type))
         except:
-            print(
+            self.custom_logger().info(
                 "Cannot sent data to the element with locator '{0}' and locator_type '{1}'".format(
                     locator,
                     locator_type))
@@ -119,9 +119,9 @@ class SeleniumDriver:
             element = wait.until(ec.element_to_be_clickable((
                 by_type, locator))
             )
-            print("Element appeared on the page")
+            self.custom_logger().info("Element appeared on the page")
         except:
-            print("Element didn't appear on the page")
+            self.custom_logger().info("Element didn't appear on the page")
             print_stack()
         return element
 
@@ -143,7 +143,8 @@ class SeleniumDriver:
             print("Directory error")
 
     # logging stuff
-    def custom_logger(self, log_level):
+
+    def custom_logger(self, log_level=logging.DEBUG):
         # getting the name of the method
         logger_name = inspect.stack()[1][3]
         logger = logging.getLogger(logger_name)
@@ -152,12 +153,11 @@ class SeleniumDriver:
 
         logger.setLevel(logging.DEBUG)
 
-        file_handler = logging.FileHandler(filename="{0}.log".format(logger_name), mode='w')
+        file_handler = logging.FileHandler(str(path.basename(__file__))+".log", mode='a')
         file_handler.setLevel(log_level)
 
         formatter = logging.Formatter(
-            '%(asctime)s, %(name)s: %(levelname)s: %(message)s',
-            datefmt='%Y-%m-%d %H:%M:%S %p')
+            '%(asctime)s - %(name)s - %(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
         return logger

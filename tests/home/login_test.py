@@ -11,7 +11,7 @@ class LoginTest(unittest.TestCase):
         driver = webdriver.Chrome()
         driver.maximize_window()
         driver.get("https://letskodeit.teachable.com/")
-        driver.implicitly_wait(3)
+        driver.implicitly_wait(2)
 
         login_page = LoginPage(driver)
         login_page.login("loyd@test.com", "123456")
