@@ -17,6 +17,7 @@ class SeleniumDriver:
     def __init__(self, driver):
         self.driver = driver
 
+    # getting locators
     def get_by_type(self, locator_type):
         locator_type = locator_type.lower()
         if locator_type == "id":
@@ -47,6 +48,7 @@ class SeleniumDriver:
             printRed("Locator type " + str(locator_type) + " is not supported")
         return locator_type
 
+    # getting elements using locators above
     def get_element(self, locator, locator_type="id"):
         element = None
         by_type = self.get_by_type(locator_type)
@@ -58,6 +60,7 @@ class SeleniumDriver:
             printRed("!!! Element %s was not found by %s !!!" % (locator, by_type))
         return element
 
+    # clicking on the element
     def click_element(self, locator, locator_type='id'):
         try:
             element = self.get_element(locator, locator_type)
@@ -71,6 +74,20 @@ class SeleniumDriver:
                     locator_type))
             print_stack()
 
+    def send_info(self, data, locator, locator_type='id'):
+        try:
+            element = self.get_element(locator, locator_type)
+            element.send_keys(data)
+            print(
+                "Sent data to the element with locator {0} and locator_type {0}".format(locator, locator_type))
+        except:
+            print(
+                "Sent data to the element with locator {0} and locator_type {0}".format(
+                    locator,
+                    locator_type))
+            print_stack()
+
+    # waiting for element presence
     def wait_for_element(
             self,
             locator,
@@ -97,6 +114,7 @@ class SeleniumDriver:
             print_stack()
         return element
 
+    # getting screenshots
     def screenshot(self):
 
         """Implementation of  webdriver.save_screenshot()
@@ -113,6 +131,7 @@ class SeleniumDriver:
         except NotADirectoryError:
             print("Directory error")
 
+    # logging stuff
     def custom_logger(self, logLevel):
         # getting the name of the method
         loggerName = inspect.stack()[1][3]
