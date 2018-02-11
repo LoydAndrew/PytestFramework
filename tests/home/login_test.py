@@ -6,7 +6,7 @@ import unittest
 
 
 class LoginTest(unittest.TestCase):
-    # @pytest.mark.run(order=1)
+    @pytest.mark.run(order=1)
     def test_valid_login(self):
         driver = webdriver.Chrome()
         driver.maximize_window()
