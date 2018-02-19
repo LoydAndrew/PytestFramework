@@ -1,0 +1,41 @@
+1519051132395	geckodriver	INFO	geckodriver 0.18.0
+1519051132406	geckodriver	INFO	Listening on 127.0.0.1:54463
+1519051133602	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1519051135095	Marionette	INFO	Enabled via --marionette
+1519051137905	Marionette	INFO	Listening on port 35081
+1519051137954	Marionette	WARN	TLS certificate errors will be ignored for this session
+[Child 6603, Chrome_ChildThread] WARNING: pipe error (21): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 6603, Chrome_ChildThread] WARNING: pipe error (35): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 6603, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1519051580591	geckodriver	INFO	geckodriver 0.18.0
+1519051580598	geckodriver	INFO	Listening on 127.0.0.1:49747
+1519051581760	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1519051582714	Marionette	INFO	Enabled via --marionette
+1519051584635	Marionette	INFO	Listening on port 36993
+1519051584707	Marionette	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 7838, Chrome_ChildThread] WARNING: pipe error (20): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 7838, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 7891, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1519055574850	geckodriver	INFO	geckodriver 0.18.0
+1519055574856	geckodriver	INFO	Listening on 127.0.0.1:48689
+1519055576018	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1519055576911	Marionette	INFO	Enabled via --marionette
+1519055578898	Marionette	INFO	Listening on port 42461
+1519055580943	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://d2oz8i5n9se8ej.cloudfront.net/assets/application-355d851e00397fc85c720af86347085cbc35b7af4fd659a507b2e031bc21673c.js, line 138: ReferenceError: Wistia is not defined
+JavaScript error: https://d2oz8i5n9se8ej.cloudfront.net/assets/application-355d851e00397fc85c720af86347085cbc35b7af4fd659a507b2e031bc21673c.js, line 138: ReferenceError: Wistia is not defined
+JavaScript error: https://d2oz8i5n9se8ej.cloudfront.net/assets/application-355d851e00397fc85c720af86347085cbc35b7af4fd659a507b2e031bc21673c.js, line 138: ReferenceError: Wistia is not defined
+JavaScript error: https://d2oz8i5n9se8ej.cloudfront.net/assets/application-355d851e00397fc85c720af86347085cbc35b7af4fd659a507b2e031bc21673c.js, line 138: ReferenceError: Wistia is not defined
+JavaScript error: https://d2oz8i5n9se8ej.cloudfront.net/assets/application-355d851e00397fc85c720af86347085cbc35b7af4fd659a507b2e031bc21673c.js, line 138: ReferenceError: Wistia is not defined
+[Child 14452, Chrome_ChildThread] WARNING: pipe error (19): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 14452, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1519055664352	geckodriver	INFO	geckodriver 0.18.0
+1519055664359	geckodriver	INFO	Listening on 127.0.0.1:60899
+1519055665548	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1519055666469	Marionette	INFO	Enabled via --marionette
+1519055668401	Marionette	INFO	Listening on port 42949
+1519055668472	Marionette	WARN	TLS certificate errors will be ignored for this session
+[Child 14703, Chrome_ChildThread] WARNING: pipe error (19): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 14703, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-9j9NY8/firefox-58.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown

@@ -46,6 +46,7 @@ class LoginPage(SeleniumDriver):
     def submit_button(self):
         self.click_element(self._login_button, 'name')
 
+    # Verifications that elements are present or exist
     def verify_successful_login(self):
         user_icon = self.is_present(self._avatar, 'css')
         return user_icon
@@ -54,6 +55,12 @@ class LoginPage(SeleniumDriver):
         danger_alert = self.is_present(
             "//div[contains(text(),'Invalid email or password')]", 'xpath')
         return danger_alert
+
+    def verify_title(self):
+        if "fasd" in self.get_title():
+            return True
+        else:
+            return False
 
     # Applying actions on the elements
     def login(self, email='', password=''):

@@ -4,43 +4,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import *
 from time import strftime
-from os import path
+from os import (
+    path,
+    makedirs)
 from traceback import print_stack
-import inspect
-import logging
-
-
-def print_red(prt):
-    print("\033[91m{}\033[00m".format(prt))
-
-
-def print_yel(prt):
-    print("\033[33m{}\033[00m".format(prt))  # \033m[00m needed for not printing everything in yellow
-
-
-def custom_logger(log_level=logging.DEBUG):
-    # getting the name of the method
-    logger_name = inspect.stack()[1][3]
-    logger = logging.getLogger(logger_name)
-    if not len(logger.handlers):
-         # all messages
-        directory = '/home/andrew/Documents/workspace_automation/PytestFramework/logs/'
-        logger.setLevel(logging.DEBUG)
-
-        file_handler = logging.FileHandler(directory +"pytest.log", mode='a')
-        file_handler.setLevel(log_level)
-        formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p')
-        file_handler.setFormatter(formatter)
-        logger.addHandler(file_handler)
-    return logger
-
+from utilities.custom_logger import custom_logger
 
 # noinspection PyMethodMayBeStatic,PyBroadException
 class SeleniumDriver:
     def __init__(self, driver):
         self.driver = driver
 
+    def get_title(self):
+        return self.driver.title
     # getting locators
     # noinspection PyMethodMayBeStatic
     def get_by_type(self, locator_type):
@@ -163,19 +139,24 @@ class SeleniumDriver:
         return element
 
     # getting screenshots
-    def screenshot(self):
+    def screenshot(self, resultMessage):
 
         """Implementation of  webdriver.save_screenshot()
          function that takes static directory and adds to it
          a name of the executing script + timestamp + png.
          Thus having dynamic  explicit name for screenshot """
 
-        filename = str(path.basename(__file__)) + str(strftime("%Y-%m-%d %H:%M:%S")) + ".png"
-        directory = '/home/andrew/Documents/workspace_automation/Automation/Screenshots/'
-        screenshot_directory = directory + filename
+        filename = resultMessage + str(strftime(" %Y-%m-%d %H:%M:%S")) + ".png"
+        directory = '/home/andrew/Documents/workspace_automation/PytestFramework/screenshots/'
+        relative_name = directory + filename
+        current_directory = path.dirname(__file__)
+        destination_file = path.join(current_directory, relative_name)
+        destination_directory = path.join(current_directory, directory)
         try:
-            self.driver.save_screenshot(screenshot_directory)
-            print("Screenshot was saved to: " + screenshot_directory)
+            if not path.exists(destination_directory):
+                makedirs(destination_directory)
+            self.driver.save_screenshot(destination_file)
+            print("Screenshot was saved to: " + destination_file)
         except NotADirectoryError:
-            print("Directory error")
+            custom_logger().error("###Exception in creating dir for screenshot")
 

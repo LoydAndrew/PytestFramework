@@ -10,3 +10,5 @@ base/__pycache__/__init__.cpython-35.pyc
 base/__pycache__/selenium_driver.cpython-35.pyc
 /logs/
 /.pytest_cache/
+/screenshots/
+geckodriver.log

@@ -1,6 +1,5 @@
 import pytest
-from selenium import webdriver
-from base.selenium_driver import print_yel
+from utilities.color_print import print_yel
 from base.webdriver_factory import WebdriverFactory
 @pytest.yield_fixture()
 
