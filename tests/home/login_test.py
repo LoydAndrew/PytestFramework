@@ -1,16 +1,16 @@
-from selenium import webdriver
+# from selenium import webdriver
 # from selenium.webdriver.common.by import By
 from pages.home.login_page import LoginPage
 import pytest
 import unittest
 
 
+@pytest.mark.usefixtures('oneTimeSetUp', 'setUp')
 class LoginTest(unittest.TestCase):
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    driver.get("https://letskodeit.teachable.com/")
-    driver.implicitly_wait(2)
-    login_page = LoginPage(driver)
+
+    @pytest.fixture(autouse=True)
+    def classSetup(self, oneTimeSetUp):
+        self.login_page = LoginPage(self.driver)
 
     @pytest.mark.run(order=1)
     def test_invalid_login(self):
