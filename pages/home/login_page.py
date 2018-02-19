@@ -1,4 +1,4 @@
-# from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By
 from base.selenium_driver import SeleniumDriver
 
 
@@ -13,6 +13,8 @@ class LoginPage(SeleniumDriver):
     _email_field = "user_email"
     _password_field = "user_password"
     _login_button = "commit"
+    _avatar = ".gravatar"
+    _danger_alert = ".alert-danger"
     # End of locators
 
     # Getting all the elements
@@ -44,9 +46,19 @@ class LoginPage(SeleniumDriver):
     def submit_button(self):
         self.click_element(self._login_button, 'name')
 
+    def verify_successful_login(self):
+        user_icon = self.is_present(self._avatar, 'css')
+        return user_icon
+
+    def verify_invalid_login(self):
+        danger_alert = self.is_present(
+            "//div[contains(text(),'Invalid email or password')]", 'xpath')
+        return danger_alert
+
     # Applying actions on the elements
-    def login(self, email, password):
+    def login(self, email='', password=''):
         self.click_login()
         self.enter_email(email)
         self.enter_password(password)
         self.submit_button()
+

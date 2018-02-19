@@ -70,8 +70,27 @@ class SeleniumDriver:
             return By.PARTIAL_LINK_TEXT
 
         else:
-            custom_logger().info("Locator type " + str(locator_type) + " is not supported")
+            custom_logger().error("Locator type " + str(locator_type) + " is not supported")
         return locator_type
+
+
+    # finding if element is present
+    def is_present (self, locator, locator_type=id):
+        element = None
+        by_type = self.get_by_type(locator_type)
+        try:
+            element = self.driver.find_element(by_type , locator)
+            if element is not None:
+                custom_logger().info(
+                    "Element with locator {0} and locator_type {1} is present".format(locator, locator_type))
+                return True
+        except:
+            custom_logger().error(
+                "Element with locator {0} and locator_type {1} is not located".format(locator, locator_type))
+            return False
+
+
+
 
     # getting elements using locators above
     def get_element(self, locator, locator_type="id"):
@@ -82,7 +101,7 @@ class SeleniumDriver:
             if element is not None:
                 custom_logger().info("Element %s was found by %s " % (locator, locator_type))
         except:
-            custom_logger().info("!!! Element %s was not found by %s !!!" % (locator, by_type))
+            custom_logger().error("!!! Element %s was not found by %s !!!" % (locator, by_type))
         return element
 
     # clicking on the element
@@ -95,7 +114,7 @@ class SeleniumDriver:
                     locator,
                     locator_type))
         except:
-            custom_logger().info(
+            custom_logger().error(
                 "Couldn't click on the element with locator '{0}' and 'locator_type' {1}".format(
                     locator,
                     locator_type))
@@ -110,7 +129,7 @@ class SeleniumDriver:
                     locator,
                     locator_type))
         except:
-            custom_logger().info(
+            custom_logger().error(
                 "Cannot sent data to the element with locator '{0}' and locator_type '{1}'".format(
                     locator,
                     locator_type))
@@ -139,7 +158,7 @@ class SeleniumDriver:
             )
             custom_logger().info("Element appeared on the page")
         except:
-            custom_logger().info("Element didn't appear on the page")
+            custom_logger().error("Element didn't appear on the page")
             print_stack()
         return element
 
@@ -159,6 +178,4 @@ class SeleniumDriver:
             print("Screenshot was saved to: " + screenshot_directory)
         except NotADirectoryError:
             print("Directory error")
-
-    # logging stuff
 
