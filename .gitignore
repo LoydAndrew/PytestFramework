@@ -11,4 +11,5 @@ base/__pycache__/selenium_driver.cpython-35.pyc
 /logs/
 /.pytest_cache/
 /screenshots/
-geckodriver.log
+/home/andrew/Documents/workspace_automation/PytestFramework/geckodriver.log
+/geckodriver.log
